@@ -1,5 +1,4 @@
 import { price, formatPrice } from "./pricing.mjs"
-import { nextIndex, autoplayDelay } from "./carousel.mjs"
 
 /* ───── Canvas particles ───── */
 const canvas = document.getElementById("particles")
@@ -193,90 +192,95 @@ hamburger.addEventListener("click", () => {
   navLinks.classList.toggle("open")
 })
 
-/* ───── Hero mockup parallax ───── */
-const heroMockup = document.getElementById("heroMockup")
-if (heroMockup) {
-  window.addEventListener("scroll", () => {
-    const scrollY = window.scrollY
-    const maxScroll = window.innerHeight
-    const offset = Math.min(scrollY / maxScroll, 1) * 30
-    heroMockup.style.transform = `translateY(${offset}px)`
-  })
-}
-
 /* ───── Carousel ───── */
-const carouselTrack = document.getElementById("carouselTrack")
+const carouselTrack = document.querySelector(".carousel-track")
 const carouselDots = document.getElementById("carouselDots")
-const slides = carouselTrack ? carouselTrack.querySelectorAll(".testimonial-card") : []
-const totalSlides = slides.length
+const testimonialCards = document.querySelectorAll(".testimonial-card")
 let currentSlide = 0
-let autoplayTimer = null
-let isPaused = false
+let carouselInterval = null
 
-if (totalSlides > 0) {
-  // Create dots
-  for (let i = 0; i < totalSlides; i++) {
+if (carouselTrack && testimonialCards.length) {
+  testimonialCards.forEach((_, i) => {
     const dot = document.createElement("button")
     dot.className = "carousel-dot" + (i === 0 ? " active" : "")
-    dot.dataset.index = i
+    dot.setAttribute("aria-label", `Témoignage ${i + 1}`)
     dot.addEventListener("click", () => goToSlide(i))
     carouselDots.appendChild(dot)
-  }
+  })
 
   function goToSlide(index) {
     currentSlide = index
-    const offset = -currentSlide * 100
+    const offset = -index * 100
     carouselTrack.style.transform = `translateX(${offset}%)`
+    carouselTrack.style.opacity = "0.6"
+    requestAnimationFrame(() => { carouselTrack.style.opacity = "1" })
     document.querySelectorAll(".carousel-dot").forEach((d, i) => {
-      d.classList.toggle("active", i === currentSlide)
+      d.classList.toggle("active", i === index)
     })
   }
 
-  function advanceSlide() {
-    if (!isPaused) {
-      currentSlide = nextIndex(currentSlide, totalSlides, 1)
-      goToSlide(currentSlide)
+  function nextSlide() {
+    goToSlide((currentSlide + 1) % testimonialCards.length)
+  }
+
+  function startCarousel() {
+    if (carouselInterval) clearInterval(carouselInterval)
+    carouselInterval = setInterval(nextSlide, 5000)
+  }
+
+  function stopCarousel() {
+    if (carouselInterval) {
+      clearInterval(carouselInterval)
+      carouselInterval = null
     }
   }
 
-  function startAutoplay() {
-    stopAutoplay()
-    const delay = autoplayDelay(isPaused)
-    if (delay !== null) {
-      autoplayTimer = setInterval(advanceSlide, delay)
-    }
-  }
+  const carouselContainer = document.getElementById("carousel")
+  carouselContainer.addEventListener("mouseenter", stopCarousel)
+  carouselContainer.addEventListener("mouseleave", startCarousel)
 
-  function stopAutoplay() {
-    if (autoplayTimer) {
-      clearInterval(autoplayTimer)
-      autoplayTimer = null
-    }
-  }
-
-  // Pause on hover
-  const container = document.getElementById("carousel")
-  container.addEventListener("mouseenter", () => { isPaused = true; stopAutoplay() })
-  container.addEventListener("mouseleave", () => { isPaused = false; startAutoplay() })
-
-  startAutoplay()
+  startCarousel()
 }
 
-/* ───── FAQ accordeon ───── */
-document.querySelectorAll(".faq-question").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const item = btn.closest(".faq-item")
+/* ───── FAQ accordéon ───── */
+document.querySelectorAll(".faq-question").forEach(question => {
+  question.addEventListener("click", () => {
+    const item = question.closest(".faq-item")
     const isOpen = item.classList.contains("open")
-    // Close all
-    document.querySelectorAll(".faq-item.open").forEach(el => {
-      el.classList.remove("open")
-      el.querySelector(".faq-answer").style.maxHeight = "0"
+
+    document.querySelectorAll(".faq-item.open").forEach(openItem => {
+      openItem.classList.remove("open")
     })
-    // Toggle current
+
     if (!isOpen) {
       item.classList.add("open")
-      const answer = item.querySelector(".faq-answer")
-      answer.style.maxHeight = answer.scrollHeight + "px"
     }
   })
+})
+
+/* ───── Parallaxe doux sur sections avec data-bg ───── */
+const bgSections = document.querySelectorAll(".section-with-bg[data-bg]")
+
+bgSections.forEach(section => {
+  const bgName = section.dataset.bg
+  section.style.backgroundImage = `url(assets/${bgName})`
+})
+
+let parallaxTicking = false
+
+window.addEventListener("scroll", () => {
+  if (!parallaxTicking) {
+    requestAnimationFrame(() => {
+      const scrollY = window.scrollY
+      bgSections.forEach(section => {
+        const rect = section.getBoundingClientRect()
+        if (rect.bottom > 0 && rect.top < window.innerHeight) {
+          const offset = scrollY * 0.15
+          section.style.backgroundPosition = `center ${offset}px`
+        }
+      })
+      parallaxTicking = false
+    })
+    parallaxTicking = true
+  }
 })
