@@ -212,8 +212,6 @@ if (carouselTrack && testimonialCards.length) {
     currentSlide = index
     const offset = -index * 100
     carouselTrack.style.transform = `translateX(${offset}%)`
-    carouselTrack.style.opacity = "0.6"
-    requestAnimationFrame(() => { carouselTrack.style.opacity = "1" })
     document.querySelectorAll(".carousel-dot").forEach((d, i) => {
       d.classList.toggle("active", i === index)
     })
@@ -275,8 +273,9 @@ window.addEventListener("scroll", () => {
       bgSections.forEach(section => {
         const rect = section.getBoundingClientRect()
         if (rect.bottom > 0 && rect.top < window.innerHeight) {
-          const offset = scrollY * 0.15
-          section.style.backgroundPosition = `center ${offset}px`
+          const ratio = rect.top / window.innerHeight
+          const offset = 50 + (ratio - 0.5) * 20
+          section.style.backgroundPosition = `center ${offset}%`
         }
       })
       parallaxTicking = false
