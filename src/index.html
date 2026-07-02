@@ -4,16 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nebula — Surveillance IA</title>
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <meta property="og:title" content="Nebula — Surveillance IA">
+  <meta property="og:description" content="Surveillez vos infrastructures avec l intelligence artificielle. Alertes prédictives, analyses en temps réel.">
+  <meta property="og:image" content="assets/og-banner.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <canvas id="particles"></canvas>
 
   <nav id="nav">
-    <div class="nav-logo">Nebula</div>
+    <div class="nav-logo"><img src="assets/logo.png" alt="Nebula" class="logo-img"></div>
     <div class="nav-links">
       <a href="#features">Fonctionnalités</a>
       <a href="#pricing">Tarifs</a>
+      <a href="#testimonials">Témoignages</a>
       <a href="#contact">Contact</a>
       <a href="#">Connexion</a>
     </div>
@@ -21,9 +26,16 @@
   </nav>
 
   <section class="hero">
-    <h1>Nebula</h1>
-    <p>Surveillez vos infrastructures avec l'intelligence artificielle. Alertes prédictives, analyses en temps réel, et bien plus.</p>
-    <button class="cta">Commencer gratuitement</button>
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Nebula</h1>
+        <p>Surveillez vos infrastructures avec l intelligence artificielle. Alertes prédictives, analyses en temps réel, et bien plus.</p>
+        <button class="cta">Commencer gratuitement</button>
+      </div>
+      <div class="hero-visual">
+        <img src="assets/hero-mockup.png" alt="Dashboard Nebula" class="hero-mockup" id="heroMockup">
+      </div>
+    </div>
   </section>
 
   <section id="features" class="features fade-in-up">
@@ -69,6 +81,33 @@
     <div class="metric">
       <span class="metric-value" data-target="12">0</span>
       <span class="metric-label">ms Temps de réaction</span>
+    </div>
+  </section>
+
+  <section id="testimonials" class="testimonials fade-in-up">
+    <h2>Témoignages</h2>
+    <div class="carousel-container" id="carousel">
+      <div class="carousel-track" id="carouselTrack">
+        <div class="testimonial-card" data-index="0">
+          <img src="assets/avatar-1.png" alt="Avatar" class="testimonial-avatar">
+          <blockquote>"Nebula a transformé notre monitoring. Les alertes prédictives nous ont évité 3 incidents majeurs ce mois-ci."</blockquote>
+          <div class="testimonial-author">Sophie Lambert</div>
+          <div class="testimonial-role">CTO, DataFlow</div>
+        </div>
+        <div class="testimonial-card" data-index="1">
+          <img src="assets/avatar-2.png" alt="Avatar" class="testimonial-avatar">
+          <blockquote>"La mise en place a été incroyablement rapide. En une heure, toute notre infrastructure était surveillée."</blockquote>
+          <div class="testimonial-author">Marc Dupont</div>
+          <div class="testimonial-role">Lead DevOps, CloudScale</div>
+        </div>
+        <div class="testimonial-card" data-index="2">
+          <img src="assets/avatar-3.png" alt="Avatar" class="testimonial-avatar">
+          <blockquote>"Le tableau de bord est magnifique et les insights IA nous ont ouvert des perspectives qu on n avait pas avant."</blockquote>
+          <div class="testimonial-author">Elena Rossi</div>
+          <div class="testimonial-role">Engineering Manager, NexusTech</div>
+        </div>
+      </div>
+      <div class="carousel-dots" id="carouselDots"></div>
     </div>
   </section>
 
@@ -122,6 +161,48 @@
     </div>
   </section>
 
+  <section id="faq" class="faq fade-in-up">
+    <h2>Questions fréquentes</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Comment fonctionne la période d essai ?</span>
+          <span class="faq-chevron">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>Vous bénéficiez de 14 jours d essai gratuit sans engagement, avec toutes les fonctionnalités de la formule Pro. Aucune carte bancaire requise.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Puis-je changer de formule à tout moment ?</span>
+          <span class="faq-chevron">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>Oui, vous pouvez passer à une formule supérieure ou inférieure à tout moment. Le changement est appliqué immédiatement et nous vous remboursons le prorata.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Mes données sont-elles sécurisées ?</span>
+          <span class="faq-chevron">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>Toutes vos données sont chiffrées en transit (TLS 1.3) et au repos (AES-256). Nous sommes conformes RGPD et ISO 27001.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Quels types d infrastructures supportez-vous ?</span>
+          <span class="faq-chevron">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>Nous supportons AWS, GCP, Azure, les serveurs bare-metal, Kubernetes, Docker, et plus de 150 intégrations via notre API.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="contact" class="contact fade-in-up">
     <h2>Contact</h2>
     <p>Une question ? Notre équipe vous répond sous 24h.</p>
@@ -133,6 +214,7 @@
   </section>
 
   <footer>
+    <div class="footer-logo"><img src="assets/logo.png" alt="Nebula" class="footer-logo-img"></div>
     <p>&copy; 2026 Nebula. Tous droits réservés.</p>
   </footer>
 

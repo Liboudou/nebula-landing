@@ -1,4 +1,5 @@
 import { price, formatPrice } from "./pricing.mjs"
+import { nextIndex, autoplayDelay } from "./carousel.mjs"
 
 /* ───── Canvas particles ───── */
 const canvas = document.getElementById("particles")
@@ -190,4 +191,92 @@ const navLinks = document.querySelector(".nav-links")
 
 hamburger.addEventListener("click", () => {
   navLinks.classList.toggle("open")
+})
+
+/* ───── Hero mockup parallax ───── */
+const heroMockup = document.getElementById("heroMockup")
+if (heroMockup) {
+  window.addEventListener("scroll", () => {
+    const scrollY = window.scrollY
+    const maxScroll = window.innerHeight
+    const offset = Math.min(scrollY / maxScroll, 1) * 30
+    heroMockup.style.transform = `translateY(${offset}px)`
+  })
+}
+
+/* ───── Carousel ───── */
+const carouselTrack = document.getElementById("carouselTrack")
+const carouselDots = document.getElementById("carouselDots")
+const slides = carouselTrack ? carouselTrack.querySelectorAll(".testimonial-card") : []
+const totalSlides = slides.length
+let currentSlide = 0
+let autoplayTimer = null
+let isPaused = false
+
+if (totalSlides > 0) {
+  // Create dots
+  for (let i = 0; i < totalSlides; i++) {
+    const dot = document.createElement("button")
+    dot.className = "carousel-dot" + (i === 0 ? " active" : "")
+    dot.dataset.index = i
+    dot.addEventListener("click", () => goToSlide(i))
+    carouselDots.appendChild(dot)
+  }
+
+  function goToSlide(index) {
+    currentSlide = index
+    const offset = -currentSlide * 100
+    carouselTrack.style.transform = `translateX(${offset}%)`
+    document.querySelectorAll(".carousel-dot").forEach((d, i) => {
+      d.classList.toggle("active", i === currentSlide)
+    })
+  }
+
+  function advanceSlide() {
+    if (!isPaused) {
+      currentSlide = nextIndex(currentSlide, totalSlides, 1)
+      goToSlide(currentSlide)
+    }
+  }
+
+  function startAutoplay() {
+    stopAutoplay()
+    const delay = autoplayDelay(isPaused)
+    if (delay !== null) {
+      autoplayTimer = setInterval(advanceSlide, delay)
+    }
+  }
+
+  function stopAutoplay() {
+    if (autoplayTimer) {
+      clearInterval(autoplayTimer)
+      autoplayTimer = null
+    }
+  }
+
+  // Pause on hover
+  const container = document.getElementById("carousel")
+  container.addEventListener("mouseenter", () => { isPaused = true; stopAutoplay() })
+  container.addEventListener("mouseleave", () => { isPaused = false; startAutoplay() })
+
+  startAutoplay()
+}
+
+/* ───── FAQ accordeon ───── */
+document.querySelectorAll(".faq-question").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const item = btn.closest(".faq-item")
+    const isOpen = item.classList.contains("open")
+    // Close all
+    document.querySelectorAll(".faq-item.open").forEach(el => {
+      el.classList.remove("open")
+      el.querySelector(".faq-answer").style.maxHeight = "0"
+    })
+    // Toggle current
+    if (!isOpen) {
+      item.classList.add("open")
+      const answer = item.querySelector(".faq-answer")
+      answer.style.maxHeight = answer.scrollHeight + "px"
+    }
+  })
 })

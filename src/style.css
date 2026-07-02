@@ -59,6 +59,12 @@ nav.scrolled {
   color: transparent;
 }
 
+.nav-logo img.logo-img {
+  height: 32px;
+  width: auto;
+  display: block;
+}
+
 .nav-links {
   display: flex;
   gap: 2rem;
@@ -87,12 +93,26 @@ nav.scrolled {
 /* Hero */
 .hero {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   min-height: 100vh;
-  text-align: center;
-  padding: 2rem;
+  padding: 2rem 5%;
+  text-align: left;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 4rem;
+}
+
+.hero-text {
+  flex: 1;
+  max-width: 550px;
 }
 
 .hero h1 {
@@ -114,9 +134,27 @@ nav.scrolled {
 
 .hero p {
   font-size: 1.2rem;
-  max-width: 600px;
   color: #9090b0;
   margin-bottom: 2rem;
+}
+
+.hero-visual {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-mockup {
+  width: 100%;
+  max-width: 550px;
+  border-radius: 12px;
+  box-shadow: 20px 20px 40px rgba(124, 92, 255, 0.3);
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
 .cta {
@@ -144,6 +182,88 @@ nav.scrolled {
 .cta.secondary:hover {
   box-shadow: 0 0 20px rgba(124, 92, 255, 0.3);
   border-color: #7c5cff;
+}
+
+/* Testimonials */
+.testimonials {
+  padding: 5rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.testimonials h2 {
+  font-size: 2.2rem;
+  margin-bottom: 3rem;
+}
+
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.testimonial-card {
+  min-width: 100%;
+  padding: 2rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  box-sizing: border-box;
+}
+
+.testimonial-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  object-fit: cover;
+  border: 2px solid #7c5cff;
+}
+
+.testimonial-card blockquote {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: #c0c0e0;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.testimonial-author {
+  font-weight: 700;
+  color: #e0e0f0;
+  margin-bottom: 0.3rem;
+}
+
+.testimonial-role {
+  font-size: 0.85rem;
+  color: #9090b0;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+  padding: 0;
+}
+
+.carousel-dot.active {
+  background: #7c5cff;
 }
 
 /* Features */
@@ -369,6 +489,66 @@ nav.scrolled {
   margin-right: 0.6rem;
 }
 
+/* FAQ */
+.faq {
+  padding: 5rem 2rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.faq h2 {
+  font-size: 2.2rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 0;
+  background: none;
+  border: none;
+  color: #e0e0f0;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  gap: 1rem;
+}
+
+.faq-question:hover {
+  color: #7c5cff;
+}
+
+.faq-chevron {
+  transition: transform 0.3s ease;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.faq-item.open .faq-chevron {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.faq-answer p {
+  padding: 0 0 1.2rem 0;
+  color: #9090b0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
 /* Contact */
 .contact {
   padding: 5rem 2rem;
@@ -424,6 +604,16 @@ footer {
   border-top: 1px solid rgba(255,255,255,0.06);
 }
 
+.footer-logo {
+  margin-bottom: 0.5rem;
+}
+
+.footer-logo-img {
+  height: 24px;
+  width: auto;
+  opacity: 0.6;
+}
+
 /* Animations */
 .fade-in-up {
   opacity: 0;
@@ -460,14 +650,6 @@ footer {
     display: block;
   }
 
-  .hero h1 {
-    font-size: 2.8rem;
-  }
-
-  .hero p {
-    font-size: 1rem;
-  }
-
   .features-grid {
     grid-template-columns: 1fr;
   }
@@ -479,6 +661,20 @@ footer {
 
   .pricing-grid {
     grid-template-columns: 1fr;
+  }
+
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .hero h1 {
+    font-size: 2.8rem;
+  }
+
+  .hero-text {
+    max-width: 100%;
   }
 
   .pricing-card.featured {
