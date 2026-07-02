@@ -191,3 +191,96 @@ const navLinks = document.querySelector(".nav-links")
 hamburger.addEventListener("click", () => {
   navLinks.classList.toggle("open")
 })
+
+/* ───── Carousel ───── */
+const carouselTrack = document.querySelector(".carousel-track")
+const carouselDots = document.getElementById("carouselDots")
+const testimonialCards = document.querySelectorAll(".testimonial-card")
+let currentSlide = 0
+let carouselInterval = null
+
+if (carouselTrack && testimonialCards.length) {
+  testimonialCards.forEach((_, i) => {
+    const dot = document.createElement("button")
+    dot.className = "carousel-dot" + (i === 0 ? " active" : "")
+    dot.setAttribute("aria-label", `Témoignage ${i + 1}`)
+    dot.addEventListener("click", () => goToSlide(i))
+    carouselDots.appendChild(dot)
+  })
+
+  function goToSlide(index) {
+    currentSlide = index
+    const offset = -index * 100
+    carouselTrack.style.transform = `translateX(${offset}%)`
+    carouselTrack.style.opacity = "0.6"
+    requestAnimationFrame(() => { carouselTrack.style.opacity = "1" })
+    document.querySelectorAll(".carousel-dot").forEach((d, i) => {
+      d.classList.toggle("active", i === index)
+    })
+  }
+
+  function nextSlide() {
+    goToSlide((currentSlide + 1) % testimonialCards.length)
+  }
+
+  function startCarousel() {
+    if (carouselInterval) clearInterval(carouselInterval)
+    carouselInterval = setInterval(nextSlide, 5000)
+  }
+
+  function stopCarousel() {
+    if (carouselInterval) {
+      clearInterval(carouselInterval)
+      carouselInterval = null
+    }
+  }
+
+  const carouselContainer = document.getElementById("carousel")
+  carouselContainer.addEventListener("mouseenter", stopCarousel)
+  carouselContainer.addEventListener("mouseleave", startCarousel)
+
+  startCarousel()
+}
+
+/* ───── FAQ accordéon ───── */
+document.querySelectorAll(".faq-question").forEach(question => {
+  question.addEventListener("click", () => {
+    const item = question.closest(".faq-item")
+    const isOpen = item.classList.contains("open")
+
+    document.querySelectorAll(".faq-item.open").forEach(openItem => {
+      openItem.classList.remove("open")
+    })
+
+    if (!isOpen) {
+      item.classList.add("open")
+    }
+  })
+})
+
+/* ───── Parallaxe doux sur sections avec data-bg ───── */
+const bgSections = document.querySelectorAll(".section-with-bg[data-bg]")
+
+bgSections.forEach(section => {
+  const bgName = section.dataset.bg
+  section.style.backgroundImage = `url(assets/${bgName})`
+})
+
+let parallaxTicking = false
+
+window.addEventListener("scroll", () => {
+  if (!parallaxTicking) {
+    requestAnimationFrame(() => {
+      const scrollY = window.scrollY
+      bgSections.forEach(section => {
+        const rect = section.getBoundingClientRect()
+        if (rect.bottom > 0 && rect.top < window.innerHeight) {
+          const offset = scrollY * 0.15
+          section.style.backgroundPosition = `center ${offset}px`
+        }
+      })
+      parallaxTicking = false
+    })
+    parallaxTicking = true
+  }
+})

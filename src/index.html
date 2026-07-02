@@ -4,29 +4,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nebula — Surveillance IA</title>
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <meta property="og:title" content="Nebula — Surveillance IA">
+  <meta property="og:description" content="Surveillez vos infrastructures avec l'intelligence artificielle. Alertes prédictives, analyses en temps réel.">
+  <meta property="og:image" content="assets/og-banner.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <canvas id="particles"></canvas>
 
   <nav id="nav">
-    <div class="nav-logo">Nebula</div>
+    <div class="nav-logo">
+      <img src="assets/logo.png" alt="Nebula" height="40">
+      <span style="background:linear-gradient(135deg,#7c5cff,#00d4ff);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800;font-size:1.4rem;">Nebula</span>
+    </div>
     <div class="nav-links">
       <a href="#features">Fonctionnalités</a>
+      <a href="#testimonials">Témoignages</a>
       <a href="#pricing">Tarifs</a>
+      <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
       <a href="#">Connexion</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
   </nav>
 
-  <section class="hero">
-    <h1>Nebula</h1>
-    <p>Surveillez vos infrastructures avec l'intelligence artificielle. Alertes prédictives, analyses en temps réel, et bien plus.</p>
-    <button class="cta">Commencer gratuitement</button>
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <h1>Nebula</h1>
+      <p>Surveillez vos infrastructures avec l'intelligence artificielle. Alertes prédictives, analyses en temps réel, et bien plus.</p>
+      <button class="cta">Commencer gratuitement</button>
+    </div>
+    <div class="hero-visual">
+      <img src="assets/hero-mockup.png" alt="Dashboard Nebula" class="hero-mockup floating" id="heroMockup">
+    </div>
   </section>
 
-  <section id="features" class="features fade-in-up">
+  <section id="features" class="features section-with-bg fade-in-up" data-bg="bg-code.png">
     <h2>Fonctionnalités</h2>
     <div class="features-grid">
       <div class="feature-card">
@@ -57,7 +73,7 @@
     </div>
   </section>
 
-  <section id="metrics" class="metrics fade-in-up">
+  <section id="metrics" class="metrics section-with-bg fade-in-up" data-bg="bg-datacenter.png">
     <div class="metric">
       <span class="metric-value" data-target="99.9">0</span>
       <span class="metric-label">% Disponibilité</span>
@@ -72,7 +88,34 @@
     </div>
   </section>
 
-  <section id="pricing" class="pricing fade-in-up">
+  <section id="testimonials" class="testimonials section-with-bg fade-in-up" data-bg="bg-constellation.png">
+    <h2>Ce qu'ils disent</h2>
+    <div class="carousel-container" id="carousel">
+      <div class="carousel-track">
+        <div class="testimonial-card">
+          <img src="assets/avatar-1.png" alt="Avatar" class="testimonial-avatar">
+          <p class="testimonial-text">"Nebula a révolutionné notre monitoring. Nous détectons les incidents avant qu'ils n'arrivent."</p>
+          <p class="testimonial-name">Sophie Laurent</p>
+          <p class="testimonial-role">CTO, TechFlow</p>
+        </div>
+        <div class="testimonial-card">
+          <img src="assets/avatar-2.png" alt="Avatar" class="testimonial-avatar">
+          <p class="testimonial-text">"L'IA prédictive nous a fait économiser des dizaines d'heures d'astreinte par mois."</p>
+          <p class="testimonial-name">Marc Dubois</p>
+          <p class="testimonial-role">Lead DevOps, CloudScale</p>
+        </div>
+        <div class="testimonial-card">
+          <img src="assets/avatar-3.png" alt="Avatar" class="testimonial-avatar">
+          <p class="testimonial-text">"Un tableau de bord clair, des alertes pertinentes. L'outil dont toute équipe SRE a besoin."</p>
+          <p class="testimonial-name">Julie Moreau</p>
+          <p class="testimonial-role">SRE Lead, DataPulse</p>
+        </div>
+      </div>
+      <div class="carousel-dots" id="carouselDots"></div>
+    </div>
+  </section>
+
+  <section id="pricing" class="pricing section-with-bg fade-in-up" data-bg="bg-datacenter.png">
     <h2>Tarifs</h2>
     <div class="pricing-toggle">
       <span class="toggle-label active" data-cycle="monthly">Mensuel</span>
@@ -122,7 +165,41 @@
     </div>
   </section>
 
-  <section id="contact" class="contact fade-in-up">
+  <section id="faq" class="faq section-with-bg fade-in-up" data-bg="bg-nebula.png">
+    <h2>Questions fréquentes</h2>
+    <div class="faq-list">
+      <div class="faq-item open">
+        <div class="faq-question">
+          <span>Comment fonctionne la prédiction IA ?</span>
+          <span class="faq-chevron">▼</span>
+        </div>
+        <div class="faq-answer">Nos modèles de machine learning analysent en continu vos métriques historiques et en temps réel pour détecter des anomalies et prédire les risques avant qu'ils ne deviennent critiques. Chaque alerte est contextualisée avec une probabilité et une cause racine estimée.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Puis-je intégrer Nebula à mes outils existants ?</span>
+          <span class="faq-chevron">▼</span>
+        </div>
+        <div class="faq-answer">Oui, Nebula s'intègre nativement avec Slack, PagerDuty, Datadog, Grafana, et plus de 50 autres outils via notre API REST et webhooks personnalisables. L'intégration prend moins de 10 minutes.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Quel niveau de disponibilité garantissez-vous ?</span>
+          <span class="faq-chevron">▼</span>
+        </div>
+        <div class="faq-answer">Nous garantissons 99.9% de disponibilité SLA pour tous les plans payants, avec un support prioritaire 24/7 pour le plan Enterprise. Notre infrastructure est répartie sur 3 régions pour assurer la redondance.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Proposez-vous un essai gratuit ?</span>
+          <span class="faq-chevron">▼</span>
+        </div>
+        <div class="faq-answer">Absolument. Vous pouvez essayer Nebula gratuitement pendant 14 jours, sans carte bancaire. Accès à toutes les fonctionnalités Pro, jusqu'à 10 serveurs. Migration accompagnée par notre équipe.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact section-with-bg fade-in-up">
     <h2>Contact</h2>
     <p>Une question ? Notre équipe vous répond sous 24h.</p>
     <form>
