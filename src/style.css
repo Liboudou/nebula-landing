@@ -311,6 +311,7 @@ nav.scrolled {
 }
 
 .pricing-card.featured:hover {
+  transform: scale(1.05) translateY(-4px);
   border-color: #00d4ff;
 }
 

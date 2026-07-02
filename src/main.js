@@ -152,7 +152,7 @@ function updatePrices(cycle) {
         pv.textContent = formatPrice(p).replace(" €", "")
       }
     })
-    card.querySelector(".price-cycle").textContent = cycle === "annual" ? "/an" : "/mois"
+    card.querySelector(".price-cycle").textContent = "/mois"
   })
   toggleLabels.forEach(l => l.classList.toggle("active", l.dataset.cycle === cycle))
   togglePill.classList.toggle("annual", cycle === "annual")
