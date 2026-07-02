@@ -83,8 +83,8 @@ function animate() {
 }
 
 window.addEventListener("resize", () => { resize() })
-canvas.addEventListener("mousemove", e => { mouse.x = e.clientX; mouse.y = e.clientY })
-canvas.addEventListener("mouseleave", () => { mouse.x = -1000; mouse.y = -1000 })
+window.addEventListener("mousemove", e => { mouse.x = e.clientX; mouse.y = e.clientY })
+window.addEventListener("mouseleave", () => { mouse.x = -1000; mouse.y = -1000 })
 
 resize()
 initParticles()
