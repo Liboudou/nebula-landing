@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nebula — Surveillance IA</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="particles"></canvas>
+
+  <nav id="nav">
+    <div class="nav-logo">Nebula</div>
+    <div class="nav-links">
+      <a href="#features">Fonctionnalités</a>
+      <a href="#pricing">Tarifs</a>
+      <a href="#contact">Contact</a>
+      <a href="#">Connexion</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+  </nav>
+
+  <section class="hero">
+    <h1>Nebula</h1>
+    <p>Surveillez vos infrastructures avec l'intelligence artificielle. Alertes prédictives, analyses en temps réel, et bien plus.</p>
+    <button class="cta">Commencer gratuitement</button>
+  </section>
+
+  <section id="features" class="features fade-in-up">
+    <h2>Fonctionnalités</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#7c5cff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2a10 10 0 1 0 10 10"/>
+          <path d="M12 6v6l4 2"/>
+        </svg>
+        <h3>Analyse en temps réel</h3>
+        <p>Traitement instantané de vos métriques avec des algorithmes de ML avancés.</p>
+      </div>
+      <div class="feature-card">
+        <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#7c5cff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+        </svg>
+        <h3>Alertes intelligentes</h3>
+        <p>Notifications précises avant que les incidents n'impactent vos utilisateurs.</p>
+      </div>
+      <div class="feature-card">
+        <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#7c5cff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+          <path d="M3 9h18"/>
+          <path d="M9 21V9"/>
+        </svg>
+        <h3>Tableaux de bord</h3>
+        <p>Visualisez vos données avec des dashboards personnalisables et partageables.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="metrics" class="metrics fade-in-up">
+    <div class="metric">
+      <span class="metric-value" data-target="99.9">0</span>
+      <span class="metric-label">% Disponibilité</span>
+    </div>
+    <div class="metric">
+      <span class="metric-value" data-target="4200">0</span>
+      <span class="metric-label">Serveurs surveillés</span>
+    </div>
+    <div class="metric">
+      <span class="metric-value" data-target="12">0</span>
+      <span class="metric-label">ms Temps de réaction</span>
+    </div>
+  </section>
+
+  <section id="pricing" class="pricing fade-in-up">
+    <h2>Tarifs</h2>
+    <div class="pricing-toggle">
+      <span class="toggle-label active" data-cycle="monthly">Mensuel</span>
+      <div class="toggle-pill">
+        <div class="toggle-thumb"></div>
+      </div>
+      <span class="toggle-label" data-cycle="annual">Annuel <small>-20%</small></span>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card" data-plan="starter">
+        <h3>Starter</h3>
+        <p class="price"><span class="price-value">9</span> <span class="price-cycle">/mois</span></p>
+        <p class="price-desc">Pour les petites équipes</p>
+        <ul>
+          <li>Jusqu'à 5 serveurs</li>
+          <li>Alertes par email</li>
+          <li>Tableau de bord basique</li>
+          <li>Support email</li>
+        </ul>
+        <button class="cta secondary">Choisir Starter</button>
+      </div>
+      <div class="pricing-card featured" data-plan="pro">
+        <div class="badge">Populaire</div>
+        <h3>Pro</h3>
+        <p class="price"><span class="price-value">29</span> <span class="price-cycle">/mois</span></p>
+        <p class="price-desc">Pour les équipes en croissance</p>
+        <ul>
+          <li>Jusqu'à 50 serveurs</li>
+          <li>Alertes SMS & Slack</li>
+          <li>Analyses prédictives IA</li>
+          <li>Support prioritaire</li>
+        </ul>
+        <button class="cta">Choisir Pro</button>
+      </div>
+      <div class="pricing-card" data-plan="enterprise">
+        <h3>Enterprise</h3>
+        <p class="price"><span class="price-value">99</span> <span class="price-cycle">/mois</span></p>
+        <p class="price-desc">Pour les grandes organisations</p>
+        <ul>
+          <li>Serveurs illimités</li>
+          <li>API personnalisée</li>
+          <li>ML personnalisé</li>
+          <li>Support dédié 24/7</li>
+        </ul>
+        <button class="cta secondary">Choisir Enterprise</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact fade-in-up">
+    <h2>Contact</h2>
+    <p>Une question ? Notre équipe vous répond sous 24h.</p>
+    <form>
+      <input type="email" placeholder="Votre email" required>
+      <textarea placeholder="Votre message" rows="4" required></textarea>
+      <button type="submit" class="cta">Envoyer</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Nebula. Tous droits réservés.</p>
+  </footer>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
